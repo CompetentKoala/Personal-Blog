@@ -1,0 +1,161 @@
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #333;
+}
+header {
+  padding: 1rem 0;
+  font-family: CHAMAN ELEGANT FONT;
+  text-align: center;
+}
+h1{
+    font-size: 50px;
+}
+h2 {
+  font-family: CHAMAN ELEGANT FONT;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+h3{
+    font-family: Classy Vogue;
+
+    align-self: center;
+}
+
+hr {
+  width: 70%;
+}
+
+img {
+  width: 90%;
+}
+.cam-img {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  display: block;
+  margin: 1rem auto;
+  object-fit: cover;
+  align-self: flex-end; /* Aligns the image to the right within the flex container */
+}
+.blog-cam {
+  width: 100%; /* Take full width of the parent */
+  aspect-ratio: 1 / 0.75; /* Force it to be a square */
+  object-fit: cover; /* Crop to fill the box, or use 'contain' to fit without cropping */ /* Optional: rounded corners */
+  display: block;
+}
+
+nav {
+  padding: 0.5rem 0;
+  font-family: Classy Vogue;
+  text-align: center;
+}
+nav a {
+  color: #333;
+  margin: 0 1rem;
+  text-decoration: none;
+}
+nav a:hover {
+  text-decoration: underline;
+}
+.container {
+  width: 95%;
+  margin: auto;
+  background: #fff;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.5s ease-out;
+}
+.fade-out {
+  opacity: 0;
+  pointer-events: none; /* optional: makes the element non-interactive */
+}
+.fade-in {
+  opacity: 1;
+}
+.container-aboutme-blogposts {
+  width: 100%;
+  margin-top: 4rem;
+  background: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+}
+
+.container-aboutme-blogposts > *:first-child {
+  flex: 0 0 60%;
+}
+
+.container-aboutme-blogposts > *:last-child {
+  flex: 0 0 40%;
+}
+.about-me {
+  font-family: Classy Vogue;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: flex-start;
+  flex: 0 0 40%;
+}
+footer {
+  text-align: center;
+  padding: 1rem 0;
+  background: #333;
+  color: #fff;
+  margin-top: 2rem;
+}
+article {
+  width: 25%;
+  height: 300px;
+  border: 1px solid;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  justify-content: flex-end;
+  transition: transform 0.3s ease-in-out;
+}
+
+article div {
+  width: 90%;
+  font-size: 20px;
+}
+.blog-posts {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+article.fade-in {
+  animation: fadeIn 2s ease-out;
+}
+article:hover {
+  background-color: #ffffff; /* or any hover effect */
+  transform: scale(1.02); /* subtle pop without layout shift */
+  color: rgb(0, 103, 112);
+}

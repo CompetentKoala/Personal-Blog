@@ -1,0 +1,236 @@
+// Global state
+let articleCount = 0;
+const blogPostsContainer = document.querySelector(".blog-posts");
+
+// Fade-in effect on page load
+window.addEventListener("DOMContentLoaded", () => {
+  const container = document.querySelector(".container");
+  container.style.visibility = "visible";
+  container.style.opacity = "0";
+  void container.offsetWidth;
+
+  requestAnimationFrame(() => {
+    container.classList.add("fade-in");
+    container.style.opacity = null;
+
+    //load first batch
+    loadMoreArticles();
+    displayRecentPosts();
+  });
+});
+
+// Page fade-out on link click
+document.querySelectorAll(".nav-link").forEach((link) => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    const container = document.querySelector(".container");
+    const targetHref = link.getAttribute("href");
+
+    setTimeout(() => {
+      container.classList.remove("fade-in");
+      container.classList.add("fade-out");
+    }, 400);
+
+    container.addEventListener(
+      "transitionend",
+      (e) => {
+        if (e.propertyName === "opacity") {
+          window.location.href = targetHref;
+        }
+      },
+      { once: true }
+    );
+  });
+});
+
+// Create a blog post article element
+function createArticle(data) {
+  const article = document.createElement("article");
+  article.classList.add("fade-in"); // 👈 add the class for animation
+
+  article.innerHTML = `
+  <a href="${data.link}" target="_blank" rel="noopener noreferrer" style="
+  text-decoration: none;
+  color: inherit;
+  display: block;           /* 👈 this fixes the shift */
+  width: 100%;
+  height: 100%;
+">
+  <div style="
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  ">
+    <img src="${data.img}" alt="" style="
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: blur(3px) brightness(.5); /* 👈 Blur and darken */
+      z-index: 0;
+    ">
+    <div style="
+      position: relative;
+      z-index: 1;
+      color: white;
+      font-weight: bold;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1rem;
+    ">
+      <h2 style="margin: 0;">${data.title}</h2>
+    </div>
+  </div>
+  </a>
+`;
+  article.addEventListener("animationend", () => {
+    article.classList.remove("fade-in");
+  });
+  return article;
+}
+
+// Load more blog articles from articlesData
+// Reverse once, globally (so you're not reversing on every call)
+const reversedArticles = [...articlesData].reverse();
+
+function loadMoreArticles() {
+  const maxArticles = 4;
+  const limit = 4;
+
+  // Don't load more if we've reached the limit
+  if (articleCount >= maxArticles) return;
+
+  const remaining = maxArticles - articleCount;
+  const nextBatch = reversedArticles.slice(
+    articleCount,
+    articleCount + Math.min(limit, remaining)
+  );
+
+  setTimeout(() => {
+    nextBatch.forEach((articleData) => {
+      const newArticle = createArticle(articleData);
+      blogPostsContainer.appendChild(newArticle);
+    });
+
+    articleCount += nextBatch.length;
+    isLoading = false;
+  }, 300);
+
+  // Optional: stop future loading if max is reached
+  setTimeout(() => {
+    const scrollY = window.scrollY;
+    const visible = window.innerHeight;
+    const fullHeight = document.body.offsetHeight;
+
+    if (scrollY + visible >= fullHeight - 300 && articleCount < maxArticles) {
+      loadMoreArticles();
+    }
+  }, 300);
+}
+
+// Lazy load articles on scroll
+let isLoading = false;
+window.addEventListener("scroll", () => {
+  if (isLoading) return;
+
+  const scrollY = window.scrollY;
+  const visible = window.innerHeight;
+  const fullHeight = document.body.offsetHeight;
+
+  if (scrollY + visible >= fullHeight - 300) {
+    isLoading = true;
+    loadMoreArticles(); // now has its own internal delay
+  }
+});
+
+//display recent posts
+function displayRecentPosts() {
+  const recentPostsContainer = document.getElementById("recent-posts");
+
+  const recentPosts = [...blogData].slice(-4).reverse(); // last 4
+
+  recentPosts.forEach((post, index) => {
+    const articleEl = createArticleElement(post, index);
+    recentPostsContainer.appendChild(articleEl);
+  });
+}
+
+//share links
+const currentURL = encodeURIComponent(window.location.href);
+
+document.getElementById(
+  "facebook-share"
+).href = `https://www.facebook.com/sharer/sharer.php?u=${currentURL}`;
+
+document.getElementById(
+  "twitter-share"
+).href = `https://twitter.com/intent/tweet?url=${currentURL}&text=Check%20this%20out!`;
+
+//for recent
+function createArticleElement(post, index) {
+  const wrapper = document.createElement("div");
+  wrapper.classList.add("article-wrapper");
+
+  if (index === 3) {
+    wrapper.classList.add("fade-bottom-mask");
+  }
+
+  const article = document.createElement("article-blog");
+  article.innerHTML = `
+    <img class="blog-cam" src="${post.img}" alt="">
+    <div class="blog-post">
+      <h2>${post.title}</h2>
+      <p>${post.text}</p>
+    </div>
+  `;
+
+  wrapper.appendChild(article);
+  return wrapper;
+}
+
+
+
+
+//serach bar
+const searchInput = document.getElementById("search-input");
+const searchResults = document.getElementById("search-results");
+
+searchInput.addEventListener("input", () => {
+  const term = searchInput.value.toLowerCase().trim();
+  searchResults.innerHTML = "";
+
+  if (term.length === 0) return;
+
+  const matches = blogData.filter(post =>
+    post.title.toLowerCase().includes(term) ||
+    (post.text && post.text.toLowerCase().includes(term))
+  );
+
+  if (matches.length > 0) {
+    const heading = document.createElement("h3");
+    heading.textContent = "Blog Posts";
+    searchResults.appendChild(heading);
+
+    matches.slice(0, 5).forEach(post => {
+      const wrapper = document.createElement("div");
+      wrapper.className = "search-item";
+
+      wrapper.innerHTML = `
+        <a href="${post.link}">
+          <div class="search-title">${post.title}</div>
+          <div class="search-desc">${post.text?.substring(0, 90) || ""}...</div>
+        </a>
+      `;
+
+      searchResults.appendChild(wrapper);
+    });
+  } else {
+    searchResults.innerHTML = "<p>No results found.</p>";
+  }
+});
