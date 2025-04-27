@@ -458,23 +458,26 @@ body.dark-mode h3 {
   }
   .blog-post-left-side h2 {
     font-size: 20px;
-
   }
   .blog-post-left-side p {
     font-size: 15px;
     line-height: normal;
   }
-  article-blog{
+  article-blog {
     width: 100%;
   }
-  .blog-post p{
+  .blog-post p {
     line-height: normal;
     margin-top: 5px;
-
   }
-  .blog-post{
+  .blog-post {
     line-height: normal;
     width: 100%;
     margin: 10px;
+  }
+
+  footer p {
+    display: flex;
+    text-align: center;
   }
 }
