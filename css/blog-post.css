@@ -21,6 +21,9 @@ h3 {
 
   align-self: center;
 }
+.logo{
+  width: 200px;
+}
 
 hr {
   width: 70%;
@@ -69,9 +72,7 @@ a {
   margin: 0 1rem;
   text-decoration: none;
 }
-nav a:hover {
-  text-decoration: underline;
-}
+
 .container {
   width: 95%;
   margin: auto;
@@ -387,9 +388,6 @@ body.dark-mode a {
   color: #a0efff;
 }
 
-body.dark-mode nav a:hover {
-  color: #66ccff;
-}
 
 body.dark-mode article {
   border: 2px solid #ffffff;

@@ -11,6 +11,20 @@ header {
     font-family: CHAMAN ELEGANT FONT;
     text-align: center;
 }
+.nav-link {
+    text-decoration: none;
+    color: inherit;
+    padding: 0.5rem;
+  }
+
+  .nav-link.active-link {
+    font-weight: bold;
+    color: #0077ff; /* or whatever color you want for "active" */
+    border-bottom: 2px solid #0077ff; /* optional underline effect */
+  }
+.logo{
+    width: 200px;
+}
 h1{
     font-size: 50px;
 }
@@ -71,9 +85,7 @@ nav a {
     margin: 0 1rem;
     text-decoration: none;
 }
-nav a:hover {
-    text-decoration: underline;
-}
+
 .container {
     width: 95%;
     margin: auto;
@@ -270,9 +282,6 @@ body.dark-mode {
     color: #e0e0e0;
   }
 
-  body.dark-mode nav a:hover {
-    color: #66ccff;
-  }
 
   body.dark-mode article {
     border: 2px solid #ffffff;
@@ -281,3 +290,59 @@ body.dark-mode {
   body.dark-mode hr {
     border-color: #444;
   }
+
+@media (max-width: 768px){
+    .theme-toggle-wrapper {
+        right: 1.5rem;
+      }
+      .theme-switch {
+        width: 40px;
+        height: 20px;
+      }
+      .slider::before {
+        height: 14px;
+        width: 14px;
+        left: 4px;
+        bottom: 2.5px;
+      }
+      input:checked + .slider::before {
+        transform: translateX(17px);
+      }
+
+    /*blog posts*/
+    .container-aboutme-blogposts{
+        flex-direction: column;
+        gap: 0px;
+      }
+      .container {
+        width: 90vw;
+      }
+      .blog-header{
+        font-size: 10px;
+      }
+      .blog-cam{
+        min-height: 98px;
+        max-height: 98px;
+      }
+      .blog-post {
+        font-size: 10px;
+      }
+
+      article{
+        height: 100px;
+      }
+      article {
+        width: 90%;
+        height: 100%;
+        border: 2px solid;
+        margin: 10px;
+
+        box-sizing: border-box; /* Ensures padding doesn't change layout */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 0px;
+        transition: color 0.3s ease-in-out, transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    }
+    }

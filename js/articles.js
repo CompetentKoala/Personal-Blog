@@ -42,58 +42,42 @@ document.querySelectorAll(".nav-link").forEach((link) => {
   });
 });
 
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const currentPath = window.location.pathname;
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  navLinks.forEach(link => {
+    if (link.getAttribute('href') === currentPath) {
+      link.classList.add('active-link');
+    }
+  });
+});
+
 // Create a blog post article element
 function createArticle(data) {
   const article = document.createElement("article");
-  article.classList.add("fade-in"); // 👈 add the class for animation
+  article.classList.add("fade-in");
 
   article.innerHTML = `
-  <a href="${data.link}" target="_blank" rel="noopener noreferrer" style="
-  text-decoration: none;
-  color: inherit;
-  display: block;           /* 👈 this fixes the shift */
-  width: 100%;
-  height: 100%;
-">
-  <div style="
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  ">
-    <img src="${data.img}" alt="" style="
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: blur(3px) brightness(.5); /* 👈 Blur and darken */
-      z-index: 0;
-    ">
-    <div style="
-      position: relative;
-      z-index: 1;
-      color: white;
-      font-weight: bold;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 1rem;
-    ">
-      <h2 style="margin: 0;">${data.title}</h2>
-    </div>
-  </div>
-  </a>
-`;
+    <a href="${data.link}" target="_blank" rel="noopener noreferrer" class="blog-article-link">
+      <div class="blog-article-wrapper">
+        <img src="${data.img}" alt="" class="blog-article-img">
+        <div class="blog-article-content">
+          <h2>${data.title}</h2>
+        </div>
+      </div>
+    </a>
+  `;
 
   article.addEventListener("animationend", () => {
     article.classList.remove("fade-in");
   });
+
   return article;
 }
+
 
 // Load more blog articles from articlesData
 // Reverse once, globally (so you're not reversing on every call)

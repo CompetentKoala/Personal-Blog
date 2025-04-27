@@ -35,7 +35,7 @@ function createArticleElement(post, index) {
     const wrapper = document.createElement("div");
     wrapper.classList.add("article-wrapper");
 
-    if (index === 3) {
+    if (index === 2) {
       wrapper.classList.add("fade-bottom-mask");
     }
 
@@ -55,10 +55,24 @@ function createArticleElement(post, index) {
   }
 
 
+  //nav link highlight
+  document.addEventListener('DOMContentLoaded', () => {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    navLinks.forEach(link => {
+      if (link.getAttribute('href') === currentPath) {
+        link.classList.add('active-link');
+      }
+    });
+  });
+
+
+
 function displayRecentPosts() {
     const recentPostsContainer = document.getElementById("recent-posts");
 
-    const recentPosts = [...blogData].slice(-4).reverse(); // last 4
+    const recentPosts = [...blogData].slice(-3).reverse(); // last 4
 
     recentPosts.forEach((post, index) => {
         const articleEl = createArticleElement(post, index);

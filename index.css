@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    line-height: 1.6;
+    line-height: 1.2;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
@@ -11,6 +11,18 @@ header {
     font-family: CHAMAN ELEGANT FONT;
     text-align: center;
 }
+.nav-link {
+    text-decoration: none;
+    color: inherit;
+    padding: 0.5rem;
+  }
+
+  .nav-link.active-link {
+    font-weight: bold;
+    color: #0077ff; /* or whatever color you want for "active" */
+    border-bottom: 2px solid #0077ff; /* optional underline effect */
+  }
+
 h1{
     font-size: 50px;
 }
@@ -21,6 +33,8 @@ h3{
     font-family: Classy Vogue;
 
     align-self: center;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 hr {
@@ -62,9 +76,7 @@ nav a {
     margin: 0 1rem;
     text-decoration: none;
 }
-nav a:hover {
-    text-decoration: underline;
-}
+
 .container {
     width: 80%;
     margin: auto;
@@ -299,9 +311,7 @@ body.dark-mode nav a {
   color: #e0e0e0;
 }
 
-body.dark-mode nav a:hover {
-  color: #66ccff;
-}
+
 
 body.dark-mode article {
   border: 2px solid #ffffff;
@@ -310,6 +320,18 @@ body.dark-mode article {
 body.dark-mode hr {
   border-color: #444;
 }
+  /* Gradient overlay */
+  body.dark-mode .fade-bottom-mask::after {
+    background: linear-gradient(to bottom, rgba(252, 252, 252, 0) 0%, rgb(0, 0, 0) 100%);
+  }
+
+
+
+
+
+
+
+
 
 
 
@@ -343,9 +365,31 @@ body{
   /*blog posts*/
   .container-aboutme-blogposts{
     flex-direction: column;
+    gap: 0px;
+  }
+  .blog-header{
+    font-size: 10px;
+  }
+  .blog-cam{
+    min-height: 98px;
+    max-height: 98px;
+  }
+  .blog-post {
+    font-size: 10px;
+  }
+
+  article{
+    height: 100px;
   }
 
 
-
+  /*about me */
+  .about-me{
+    width: 100%;
+  }
+  .cam-img {
+    width: 150px;
+    height: 150px;
+  }
 
 }
