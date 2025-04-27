@@ -66,7 +66,6 @@ function createArticle(data) {
   return article;
 }
 
-
 // Load more blog articles from articlesData
 // Reverse once, globally (so you're not reversing on every call)
 const reversedArticles = [...articlesData].reverse();
@@ -134,16 +133,18 @@ function displayRecentPosts() {
 }
 
 //share links
+// Encode the current page URL
 const currentURL = encodeURIComponent(window.location.href);
 
+// Facebook deep link (opens app if possible)
 document.getElementById(
   "facebook-share"
-).href = `https://www.facebook.com/sharer/sharer.php?u=${currentURL}`;
+).href = `fb://facewebmodal/f?href=https://www.facebook.com/sharer/sharer.php?u=${currentURL}`;
 
+// Twitter deep link (opens app if possible)
 document.getElementById(
   "twitter-share"
-).href = `https://twitter.com/intent/tweet?url=${currentURL}&text=Check%20this%20out!`;
-
+).href = `twitter://post?message=Check%20this%20out!%20${currentURL}`;
 //for recent blogs
 function createArticleElement(post, index) {
   const wrapper = document.createElement("div");
@@ -166,9 +167,6 @@ function createArticleElement(post, index) {
   return wrapper;
 }
 
-
-
-
 //serach bar
 const searchInput = document.getElementById("search-input");
 const searchResults = document.getElementById("search-results");
@@ -179,9 +177,10 @@ searchInput.addEventListener("input", () => {
 
   if (term.length === 0) return;
 
-  const matches = blogData.filter(post =>
-    post.title.toLowerCase().includes(term) ||
-    (post.text && post.text.toLowerCase().includes(term))
+  const matches = blogData.filter(
+    (post) =>
+      post.title.toLowerCase().includes(term) ||
+      (post.text && post.text.toLowerCase().includes(term))
   );
 
   if (matches.length > 0) {
@@ -189,7 +188,7 @@ searchInput.addEventListener("input", () => {
     heading.textContent = "Blog Posts";
     searchResults.appendChild(heading);
 
-    matches.slice(0, 5).forEach(post => {
+    matches.slice(0, 5).forEach((post) => {
       const wrapper = document.createElement("div");
       wrapper.className = "search-item";
 
@@ -207,30 +206,28 @@ searchInput.addEventListener("input", () => {
   }
 });
 
-
-
 // Dark Mode Toggle and LocalStorage Save
-document.addEventListener('DOMContentLoaded', () => {
-  const toggle = document.getElementById('theme-toggle');
-  const label = document.getElementById('theme-label');
+document.addEventListener("DOMContentLoaded", () => {
+  const toggle = document.getElementById("theme-toggle");
+  const label = document.getElementById("theme-label");
 
   // On load, apply saved theme
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme === 'dark') {
-    document.body.classList.add('dark-mode');
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark-mode");
     toggle.checked = true;
-    label.textContent = 'Dark';
+    label.textContent = "Dark";
   }
 
-  toggle.addEventListener('change', () => {
-    document.body.classList.toggle('dark-mode');
+  toggle.addEventListener("change", () => {
+    document.body.classList.toggle("dark-mode");
 
-    if (document.body.classList.contains('dark-mode')) {
-      localStorage.setItem('theme', 'dark');
-      label.textContent = 'Dark';
+    if (document.body.classList.contains("dark-mode")) {
+      localStorage.setItem("theme", "dark");
+      label.textContent = "Dark";
     } else {
-      localStorage.setItem('theme', 'light');
-      label.textContent = 'Light';
+      localStorage.setItem("theme", "light");
+      label.textContent = "Light";
     }
   });
 });
