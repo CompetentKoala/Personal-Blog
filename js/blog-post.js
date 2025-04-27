@@ -133,38 +133,35 @@ function displayRecentPosts() {
 }
 
 //share links
-// Encode the current page URL
-const currentURL = encodeURIComponent(window.location.href);
+const shareData = {
+  title: "Check this out!",
+  text: "Found something cool!",
+  url: window.location.href,
+};
 
-document.getElementById(
-  "facebook-share"
-).href = `https://www.facebook.com/sharer/sharer.php?u=${currentURL}`;
+const facebookBtn = document.getElementById('facebook-share');
+const twitterBtn = document.getElementById('twitter-share');
 
-document.getElementById(
-  "twitter-share"
-).href = `https://twitter.com/intent/tweet?url=${currentURL}&text=Check%20this%20out!`;
-
-//for recent blogs
-function createArticleElement(post, index) {
-  const wrapper = document.createElement("div");
-  wrapper.classList.add("article-wrapper");
-
-  if (index === 3) {
-    wrapper.classList.add("fade-bottom-mask");
+facebookBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  if (navigator.share) {
+    navigator.share(shareData);
+  } else {
+    // fallback to Facebook web share if navigator.share is not supported
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank');
   }
+});
 
-  const article = document.createElement("article-blog");
-  article.innerHTML = `
-    <img class="blog-cam" src="${post.img}" alt="">
-    <div class="blog-post">
-      <h2>${post.title}</h2>
-      <p>${post.text}</p>
-    </div>
-  `;
+twitterBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  if (navigator.share) {
+    navigator.share(shareData);
+  } else {
+    // fallback to Twitter web share if navigator.share is not supported
+    window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=Check%20this%20out!`, '_blank');
+  }
+});
 
-  wrapper.appendChild(article);
-  return wrapper;
-}
 
 //serach bar
 const searchInput = document.getElementById("search-input");
