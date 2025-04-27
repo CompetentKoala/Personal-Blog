@@ -136,15 +136,14 @@ function displayRecentPosts() {
 // Encode the current page URL
 const currentURL = encodeURIComponent(window.location.href);
 
-// Facebook deep link (opens app if possible)
 document.getElementById(
   "facebook-share"
-).href = `fb://facewebmodal/f?href=https://www.facebook.com/sharer/sharer.php?u=${currentURL}`;
+).href = `https://www.facebook.com/sharer/sharer.php?u=${currentURL}`;
 
-// Twitter deep link (opens app if possible)
 document.getElementById(
   "twitter-share"
-).href = `twitter://post?message=Check%20this%20out!%20${currentURL}`;
+).href = `https://twitter.com/intent/tweet?url=${currentURL}&text=Check%20this%20out!`;
+
 //for recent blogs
 function createArticleElement(post, index) {
   const wrapper = document.createElement("div");
