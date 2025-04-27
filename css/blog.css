@@ -169,3 +169,115 @@ article:hover {
     transform: scale(1.02); /* subtle pop without layout shift */
     color: rgb(0, 103, 112);
 }
+
+
+
+
+
+
+
+
+
+.theme-toggle-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 999;
+    font-family: sans-serif;
+  }
+
+  .theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+  }
+
+  .theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0;
+    right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 30px;
+  }
+
+  .slider::before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+
+  /* Checked state (Dark Mode ON) */
+  input:checked + .slider {
+    background-color: #333;
+  }
+
+  input:checked + .slider::before {
+    transform: translateX(30px);
+  }
+
+  .theme-label {
+    font-size: 14px;
+    color: #333;
+  }
+
+  /* Light/Dark label colors */
+  body.dark-mode .theme-label {
+    color: #eee;
+  }
+
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+  }
+
+  body.dark-mode header,
+  body.dark-mode .nav-link,
+  body.dark-mode nav,
+  body.dark-mode footer,
+  body.dark-mode .container,
+  body.dark-mode .about-me,
+  body.dark-mode .blog-posts,
+  body.dark-mode .container-aboutme-blogposts,
+  body.dark-mode article {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+  }
+
+  body.dark-mode .logo {
+      filter: invert(1);
+    }
+
+  body.dark-mode nav a {
+    color: #e0e0e0;
+  }
+
+  body.dark-mode nav a:hover {
+    color: #66ccff;
+  }
+
+  body.dark-mode article {
+    border: 2px solid #ffffff;
+  }
+
+  body.dark-mode hr {
+    border-color: #444;
+  }

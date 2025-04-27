@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Unnatural Intelligence</title>
+    <link rel="icon" type="image/png" href="/logo.png">
+
     <link rel="stylesheet" href="/index.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,6 +16,7 @@
   </head>
   <body>
     <header>
+      <img class="logo" src="/unnatural-int.png" alt="">
       <h1>Unnatural Intelligence</h1>
       <h3>
         by CompotentKoala — developer, writer, and challenger of easy answers
@@ -21,6 +24,14 @@
       <hr />
     </header>
     <nav>
+      <div class="theme-toggle-wrapper">
+        <label class="theme-switch">
+          <input type="checkbox" id="theme-toggle">
+          <span class="slider"></span>
+        </label>
+        <span class="theme-label" id="theme-label">Light</span>
+      </div>
+
       <a class="nav-link" href="/index.html">Home</a>
       <a class="nav-link" href="/pages/articles.html">Articles</a>
       <a class="nav-link" href="/pages/blog.html">Blog</a>

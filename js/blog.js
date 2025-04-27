@@ -108,3 +108,37 @@ window.addEventListener("scroll", () => {
     loadMoreArticles(); // now has its own internal delay
   }
 });
+
+
+
+
+// Dark Mode Toggle and LocalStorage Save
+
+// Dark Mode Toggle and LocalStorage Save
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.getElementById('theme-toggle');
+  const label = document.getElementById('theme-label');
+
+  // On load, apply saved theme
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark-mode');
+    toggle.checked = true;
+    label.textContent = 'Dark';
+  }
+
+  toggle.addEventListener('change', () => {
+    document.body.classList.toggle('dark-mode');
+
+    if (document.body.classList.contains('dark-mode')) {
+      localStorage.setItem('theme', 'dark');
+      label.textContent = 'Dark';
+    } else {
+      localStorage.setItem('theme', 'light');
+      label.textContent = 'Light';
+    }
+  });
+});
