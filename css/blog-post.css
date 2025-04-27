@@ -448,6 +448,7 @@ body.dark-mode h3 {
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
+    width: 90vw;
   }
   .share-buttons {
     justify-content: center;
