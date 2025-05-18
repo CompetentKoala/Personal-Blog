@@ -7,7 +7,7 @@ const blogData = [
   },
   {
     title: "Replika AI Chat Bot",
-    text: "The why's and how's of acheiving my goals",
+    text: "Can, and SHOULD AI replace friendships and human connection? ",
     img: "/images/replica.png",
     url: "/blog-posts/post2.html",
   },
