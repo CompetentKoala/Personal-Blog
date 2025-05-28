@@ -6,6 +6,13 @@ body {
   background-color: #f4f4f4;
   color: #333;
 }
+
+/* Prevent horizontal scroll on the entire page */
+html,
+body {
+  overflow-x: hidden;
+}
+
 header {
   padding: 1rem 0;
   font-family: CHAMAN ELEGANT FONT;
@@ -445,8 +452,8 @@ body.dark-mode h3 {
   color: white;
 }
 
-.blog-img-embed{
-  width: 80%;
+.blog-img-embed {
+  width: 100%;
 }
 
 @media (max-width: 768px) {
@@ -458,7 +465,7 @@ body.dark-mode h3 {
     justify-content: center;
   }
 
-  .blog-post-left-side{
+  .blog-post-left-side {
     width: 90vw;
   }
 
