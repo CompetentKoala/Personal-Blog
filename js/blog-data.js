@@ -9,7 +9,7 @@ const blogData = [
     title: "Replika AI Chat Bot",
     text: "Can, and SHOULD AI replace friendships and human connection? ",
     img: "/images/replica.png",
-    url: "/blog-posts/2-Replika-AI-Chat-Bot.html",
+    url: "/blog-posts/3-The-Truth-of-The-Environmental-Impact-of-AI copy.html",
   },
   {
     title: "AI vs Beef: What’s Really Draining the Planet?",
