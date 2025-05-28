@@ -445,6 +445,10 @@ body.dark-mode h3 {
   color: white;
 }
 
+.blog-img-embed{
+  width: 80%;
+}
+
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
@@ -452,6 +456,10 @@ body.dark-mode h3 {
   }
   .share-buttons {
     justify-content: center;
+  }
+
+  .blog-post-left-side{
+    width: 90vw;
   }
 
   .blog-post-left-side h1 {
