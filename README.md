@@ -24,7 +24,7 @@ Hosting/Deployment: Github -> Netlify
 
 Version Control: Git & GitHub
 
-📂 Project Structure
+Project Structure
 ├── article-img/       # Blog post images
 ├── blog-posts/        # Individual blog posts
 ├── css/               # Stylesheets
@@ -47,6 +47,6 @@ Reflections on challenges, ideas, and progress
 It’s part technical, part personal, and always evolving.
 
 
-📬 Contributing
+Contributing
 This is a personal project, but feedback and ideas are welcome.
 Feel free to open an issue or pull request.
